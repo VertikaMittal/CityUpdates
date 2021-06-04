@@ -1,5 +1,12 @@
 <%- include('partials/header'); -%>
 <h1>Shorts</h1>
-<h3><%=headings%></h3>
-<p><%=newsinshort%></p>
+
+ <% newsposts.forEach(function(apost){ %>
+    <h3> <%= apost.title %> </h3>
+    <p> <%= apost.description + "..."%> 
+     <a href="<%=apost.url%>">READ MORE</a>
+ </p>
+      <% }); %>
 <%- include('partials/footer'); -%>
+
+

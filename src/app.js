@@ -33,7 +33,7 @@ hours = hours ? hours : 12; // the hour '0' should be '12'
 var strTime = hours + ":" + minutes + " " + ampm;
 
 //for news page
-var newsposts = [];
+// var newsposts = [];
 
 app.get("/", (req, res) => {
   res.render("index");
@@ -103,9 +103,10 @@ app.get("/get_news", (req, res) => {
   axiosTest()
     .then((data) => {
       // console.log();
+     
+      // console.log(newsposts);
       res.render("news", {
-        headings: ab.data.articles[0].title,
-        newsinshort:ab.data.articles[0].content
+        newsposts:ab.data.articles
           });
     })
     .catch((err) => console.log(err));
