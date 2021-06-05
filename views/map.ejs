@@ -1,0 +1,34 @@
+<%- include('partials/header'); -%>
+<div id='map' style='margin: 0;'></div>
+<script>
+mapboxgl.accessToken = 'pk.eyJ1IjoidmVydGlrYW1pdHRhbCIsImEiOiJja3BrN2tzYTIwamRoMnVxcnd6dWp5M2o3In0.3exKEMJ_jymV7G3WbAunFg'
+
+navigator.geolocation.getCurrentPosition(successloc,errloc,{
+    enableHighAccuracy:true
+})
+function successloc(position){
+    console.log(position);
+    setupMap([position.coords.longitude,position.coords.latitude])
+}
+function errloc(){
+    // console.log(position);
+}
+function setupMap(center){
+    const map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/streets-v11',
+    center:center,
+    zoom:12
+    })
+    const nav = new mapboxgl.NavigationControl();
+map.addControl(nav);
+
+var directions = new MapboxDirections({
+  accessToken: mapboxgl.accessToken
+});
+map.addControl(directions, 'top-left');
+}
+
+
+</script>
+<%- include('partials/footer'); -%>
