@@ -111,7 +111,10 @@ app.get("/get_news", (req, res) => {
     })
     .catch((err) => console.log(err));
 });
-
+app.get("/get_maps",(req,res)=>{
+  
+  res.render("map");
+});
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });

@@ -11,10 +11,12 @@
   "author": "VERTIKA MITTAL",
   "license": "ISC",
   "dependencies": {
+    "@mapbox/mapbox-gl-directions": "^4.1.0",
     "axios": "^0.21.1",
     "body-parser": "^1.19.0",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
+    "mapbox-gl": "^2.3.0",
     "mongoose": "^5.12.12",
     "path": "^0.12.7",
     "request": "^2.88.2",
