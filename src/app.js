@@ -10,6 +10,7 @@ app.use(express.static("public"));
 var cday = new Date();
 var ab = null;
 var cityName = null;
+var stateName = null;
 const monthNames = [
   "January",
   "February",
@@ -40,7 +41,8 @@ app.get("/", (req, res) => {
 });
 app.post("/", (req, res) => {
   cityName = req.body.city;
-  res.redirect("/get_temp");
+  stateName=req.body.state;
+  // res.redirect("/get_temp");
 });
 app.get("/get_temp", (req, res) => {
   async function axiosTest() {
@@ -90,13 +92,36 @@ app.get("/get_temp", (req, res) => {
 //   .catch(err => console.log(err))
 // });
 
+// app.get("/get_news", (req, res) => {
+
+
+//   async function axiosTest() {
+//     ab = await axios.get(
+//       "https://newsapi.org/v2/everything?language=en&sortBy=popularity&apiKey=8576618518634db4bd1044cd43dc64ba",
+//       { params: { q:cityName,qInTitle:" ",sources:"bbc-news",domains:"bbc.co.uk" } }
+//     );
+//     return ab;
+//   }
+//   axiosTest()
+//     .then((data) => {
+//       // console.log();
+     
+//       // console.log(newsposts);
+//       res.render("news", {
+//         newsposts:ab.data.articles
+//           });
+//     })
+//     .catch((err) => console.log(err));
+// });
+
+
 app.get("/get_news", (req, res) => {
 
 
   async function axiosTest() {
     ab = await axios.get(
-      "https://newsapi.org/v2/everything?language=en&sortBy=popularity&apiKey=8576618518634db4bd1044cd43dc64ba",
-      { params: { q:cityName,qInTitle:cityName,sources:"bbc-news",domains:"bbc.co.uk" } }
+      "https://newsdata.io/api/1/news?apikey=pub_352347236fbf4718cdac2d008f2a2ada97d&country=in&language=en",
+      { params: { q:stateName} }
     );
     return ab;
   }
@@ -106,11 +131,12 @@ app.get("/get_news", (req, res) => {
      
       // console.log(newsposts);
       res.render("news", {
-        newsposts:ab.data.articles
+        newsposts:ab.data.results
           });
     })
     .catch((err) => console.log(err));
 });
+
 app.get("/get_maps",(req,res)=>{
   
   res.render("map");

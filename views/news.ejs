@@ -3,8 +3,8 @@
 
  <% newsposts.forEach(function(apost){ %>
     <h3> <%= apost.title %> </h3>
-    <p> <%= apost.description + "..."%> 
-     <a href="<%=apost.url%>">READ MORE</a>
+    <p> <%= apost.description.substring(0,200) + "..."%> 
+     <a href="<%=apost.link%>">READ MORE</a>
  </p>
       <% }); %>
 <%- include('partials/footer'); -%>
